@@ -17,10 +17,15 @@ public class Director : MonoBehaviour {
             bool didHit = Physics.Raycast(toMouse, out rhInfo);
             if (didHit){
                 if (rhInfo.collider.name.Contains("Agent")){
+                    Debug.Log("Agent is being clicked");
+                    if (thatNigga.rigidbody != null){
+                        thatNigga.rigidbody.GetComponent<Renderer>().material.color = Color.white;
+                    }
                     thatNigga = rhInfo;
+                    thatNigga.rigidbody.GetComponent<Renderer>().material.color = Color.red;
                 }
                 else{
-                    print("Something else is being clicked");
+                    Debug.Log("Something else is being clicked");
                 }
             }
             else{
