@@ -6,6 +6,8 @@ public class cameraControll : MonoBehaviour {
 	Vector2 _mouseAbsolute;
 	Vector2 _smoothMouse;
 
+	public float speed = 10.0f;
+
 	public Vector2 clampInDegrees = new Vector2(360, 180);
 	public bool lockCursor;
 	public Vector2 sensitivity = new Vector2(2, 2);
@@ -72,6 +74,17 @@ public class cameraControll : MonoBehaviour {
 		{
 			var yRotation = Quaternion.AngleAxis(_mouseAbsolute.x, transform.InverseTransformDirection(Vector3.up));
 			transform.localRotation *= yRotation;
+		}
+		if (Input.GetAxis("Mouse X") > 0)
+		{
+			transform.position += new Vector3(Input.GetAxisRaw("Mouse X") * Time.deltaTime * speed,
+				0.0f, Input.GetAxisRaw("Mouse Y") * Time.deltaTime * speed);
+		}
+
+		else if (Input.GetAxis("Mouse X") < 0)
+		{
+			transform.position += new Vector3(Input.GetAxisRaw("Mouse X") * Time.deltaTime * speed,
+				0.0f, Input.GetAxisRaw("Mouse Y") * Time.deltaTime * speed);
 		}
 	}
 }
