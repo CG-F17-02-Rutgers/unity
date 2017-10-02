@@ -22,7 +22,7 @@ public class AgentController : MonoBehaviour{
         }
         */
     }
-    void Move(Vector3 position){
+    public void Move(Vector3 position){
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit)){

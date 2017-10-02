@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Director : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
+    private RaycastHit thatNigga = new RaycastHit();
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -15,19 +15,24 @@ public class Director : MonoBehaviour {
             Ray toMouse = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit rhInfo;
             bool didHit = Physics.Raycast(toMouse, out rhInfo);
-            if (didHit)
-            {
-                Debug.Log(rhInfo.collider.name + "---" + rhInfo.point);
-                AgentController destScript = rhInfo.collider.GetComponent<AgentController>();
-                if (destScript)
-                {
+            if (didHit){
+                if (rhInfo.collider.name.Contains("Agent")){
+                    thatNigga = rhInfo;
+                }
+                else{
+                    print("Something else is being clicked");
                 }
             }
-            else
-            {
+            else{
                 Debug.Log("clicked on EmptySpace");
             }
 
+        }
+        if (Input.GetMouseButtonDown(1)){
+            AgentController destScript = thatNigga.collider.GetComponent<AgentController>();
+            if (destScript){
+                destScript.Move(Input.mousePosition);
+            }
         }
 	}
 }
