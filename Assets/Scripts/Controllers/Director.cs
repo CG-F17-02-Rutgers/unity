@@ -79,6 +79,7 @@ public class Director : MonoBehaviour {
 
         }
         if (Input.GetMouseButtonDown(1)){
+			Debug.Log (Input.mousePosition);
             for (int i =0; i<5; i++){
                 if (chosenNiggas[i] == true){
                     AgentController destScript = thoseNiggas[i].GetComponent<Collider>().GetComponent<AgentController>();
