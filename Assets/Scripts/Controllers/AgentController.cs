@@ -24,7 +24,7 @@ public class AgentController : MonoBehaviour{
     }
     public void Move(Vector3 position){
         RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = Camera.main.ScreenPointToRay(position);
         if (Physics.Raycast(ray, out hit)){
             agent.destination = hit.point;
         }

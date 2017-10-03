@@ -84,7 +84,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\RotatingController.cs" />
+    <Compile Include="Assets\Scripts\autoMoving.cs" />
     <Compile Include="Assets\Scripts\Controllers\AgentController.cs" />
     <Compile Include="Assets\Scripts\Controllers\cameraControll.cs" />
     <Compile Include="Assets\Scripts\Controllers\Director.cs" />
@@ -95,6 +95,7 @@
     <Compile Include="Assets\Scripts\Curves\ICurve.cs" />
     <Compile Include="Assets\Scripts\Curves\Line.cs" />
     <Compile Include="Assets\Scripts\Curves\QuadBezierCurve.cs" />
+    <Compile Include="Assets\Scripts\RotatingController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Standard Assets\Environment\Water (Basic)\Shaders\FXWaterBasic.shader" />
