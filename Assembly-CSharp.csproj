@@ -62,6 +62,7 @@
      <Compile Include="Assets\Scripts\Curves\ICurve.cs" />
      <Compile Include="Assets\Scripts\Curves\Line.cs" />
      <Compile Include="Assets\Scripts\Curves\QuadBezierCurve.cs" />
+     <Compile Include="Assets\Scripts\MovingObstacleController.cs" />
      <Compile Include="Assets\Scripts\RotatingController.cs" />
      <None Include="Assets\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Simple.shader" />
      <None Include="Assets\Standard Assets\Environment\Water (Basic)\Shaders\FXWaterBasic.shader" />
