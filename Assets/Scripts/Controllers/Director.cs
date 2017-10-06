@@ -5,17 +5,17 @@ using UnityEngine;
 
 public class Director : MonoBehaviour {
 	
-	private List<GameObject> selectedAgents;
+	private List<AgentController> selectedAgents;
 
 	private Collider[] movingOb = new Collider[2];
 	private bool[] chosenOb = new bool[2];
 	public int speed;
     // Use this for initialization
     void Start () {
-		selectedAgents = new List<GameObject> ();
+		selectedAgents = new List<AgentController> ();
 		//initialize movableobstacles
-		movingOb [0] = GameObject.FindGameObjectWithTag ("movingOb1").GetComponent<Collider> (); chosenOb[0]=false;
-		movingOb [1] = GameObject.FindGameObjectWithTag ("movingOb2").GetComponent<Collider> (); chosenOb[1] = false;
+		//movingOb [0] = GameObject.FindGameObjectWithTag ("movingOb1").GetComponent<Collider> (); chosenOb[0]=false;
+		//movingOb [1] = GameObject.FindGameObjectWithTag ("movingOb2").GetComponent<Collider> (); chosenOb[1] = false;
 	}
 	// Update is called once per frame
 	void Update () {
@@ -44,15 +44,16 @@ public class Director : MonoBehaviour {
 						movingOb[1].GetComponent<Rigidbody>().GetComponent<Renderer>().material.color = Color.red;
 					}
 				}
-
-				if (rhInfo.collider.CompareTag("Agent")) {
-					if(selectedAgents.Contains(selectedObject)) {
+				AgentController agent = selectedObject.GetComponent<AgentController> ();
+				if (agent != null) {
+					if(selectedAgents.Contains(agent)) {
 						// remove it from the list, change color back to white
 						selectedObject.GetComponent<Renderer>().material.color = Color.white;
-						selectedAgents.Remove(selectedObject);
+						selectedAgents.Remove(agent);
 					} else {
+						// add it to the list
 						selectedObject.GetComponent<Renderer>().material.color = Color.red;
-						selectedAgents.Add(selectedObject);
+						selectedAgents.Add(agent);
 					}
 
                 }
@@ -68,20 +69,11 @@ public class Director : MonoBehaviour {
 			RaycastHit rhInfo;
 			bool didHit = Physics.Raycast(toMouse, out rhInfo);
 			if (didHit) {
-				Debug.Log ("hit an object");
 				// we hit an object. check if we can navigate to it
-				foreach (GameObject o in selectedAgents) {
-					o.GetComponent<AgentController> ().Move (rhInfo.point);
+				foreach (AgentController a in selectedAgents) {
+					a.Move (rhInfo.point);
 				}
 			}
-
-			/*
-            for (int i =0; i<5; i++){
-                if (chosenNiggas[i] == true){
-                    AgentController destScript = thoseNiggas[i].GetComponent<Collider>().GetComponent<AgentController>();
-                    destScript.Move(Input.mousePosition);
-                }
-            } */
         }
 
 		if(Input.GetKey(KeyCode.A)){

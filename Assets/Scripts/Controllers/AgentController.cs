@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class AgentController : MonoBehaviour{
+public class AgentController : MonoBehaviour {
 	NavMeshAgent agent;
 	//RaycastHit des;
-	Vector3 destination;
+	public Vector3 destination;
 
 	void Start(){
 		agent = GetComponent<NavMeshAgent>();
@@ -31,13 +31,13 @@ public class AgentController : MonoBehaviour{
 
 	private void OnDrawGizmos() {
 		Gizmos.color = Color.cyan;
-		Gizmos.DrawWireSphere (destination, 1.0f);
+		Gizmos.DrawWireSphere (destination, 0.25f);
 	}
+
 	public void Move(Vector3 position){
 		NavMeshHit hit;
 		// If the designated point is close enough to the navmesh
-		if (NavMesh.SamplePosition (position, out hit, 1.0f, NavMesh.AllAreas)) {
-			Debug.Log ("hit a point");
+		if (NavMesh.SamplePosition (position, out hit, .1f, NavMesh.AllAreas)) {
 			destination = hit.position;
 			agent.SetDestination (hit.position);
 		}
