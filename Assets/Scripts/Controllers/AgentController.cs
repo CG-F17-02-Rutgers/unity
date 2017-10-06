@@ -14,7 +14,7 @@ public class AgentController : MonoBehaviour{
 
 	void Update(){
 		Debug.Log ("-------agent distance:" + agent.remainingDistance);
-		if (Physics.OverlapSphere (agent.destination, 1).Length == 1) {
+		if (Physics.OverlapSphere (agent.destination, 0.1f).Length == 1) {
 			agent.stoppingDistance = 50;
 		} else {
 			agent.stoppingDistance = 0;
@@ -26,7 +26,7 @@ public class AgentController : MonoBehaviour{
 		Debug.Log (agent.destination);
 	}
 	public void Move(Vector3 position){
-		
+		agent.stoppingDistance = 0;
 		RaycastHit hit;
 		Ray ray = Camera.main.ScreenPointToRay(position);
 		if (Physics.Raycast(ray, out hit)){
