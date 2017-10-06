@@ -99,15 +99,15 @@ public class Director : MonoBehaviour {
                         thoseNiggas[4].GetComponent<Rigidbody>().GetComponent<Renderer>().material.color = Color.red;
                     }
                 }
-                Debug.Log(chosenNiggas[0] + "," + chosenNiggas[1] + "," + chosenNiggas[2] + "," + chosenNiggas[3] + "," + chosenNiggas[4]);
+                //Debug.Log(chosenNiggas[0] + "," + chosenNiggas[1] + "," + chosenNiggas[2] + "," + chosenNiggas[3] + "," + chosenNiggas[4]);
             }
             else{
-                Debug.Log("clicked on EmptySpace");
+                //Debug.Log("clicked on EmptySpace");
             }
 
         }
         if (Input.GetMouseButtonDown(1)){
-			Debug.Log (Input.mousePosition);
+			//Debug.Log (Input.mousePosition);
             for (int i =0; i<5; i++){
                 if (chosenNiggas[i] == true){
                     AgentController destScript = thoseNiggas[i].GetComponent<Collider>().GetComponent<AgentController>();
