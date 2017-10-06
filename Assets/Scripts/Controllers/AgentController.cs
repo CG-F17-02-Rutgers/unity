@@ -5,7 +5,8 @@ using UnityEngine.AI;
 
 public class AgentController : MonoBehaviour{
 	NavMeshAgent agent;
-	RaycastHit des;
+	//RaycastHit des;
+	Vector3 destination;
 
 	void Start(){
 		agent = GetComponent<NavMeshAgent>();
@@ -13,6 +14,7 @@ public class AgentController : MonoBehaviour{
 	}
 
 	void Update(){
+		/*
 		Debug.Log ("-------agent distance:" + agent.remainingDistance);
 		if (Physics.OverlapSphere (agent.destination, 0.1f).Length == 1) {
 			agent.stoppingDistance = 50;
@@ -24,14 +26,20 @@ public class AgentController : MonoBehaviour{
 			agent.destination = des.point;
 		}
 		Debug.Log (agent.destination);
+		*/
+	}
+
+	private void OnDrawGizmos() {
+		Gizmos.color = Color.cyan;
+		Gizmos.DrawWireSphere (destination, 1.0f);
 	}
 	public void Move(Vector3 position){
-		agent.stoppingDistance = 0;
-		RaycastHit hit;
-		Ray ray = Camera.main.ScreenPointToRay(position);
-		if (Physics.Raycast(ray, out hit)){
-			agent.destination = hit.point;
-			des = hit;
+		NavMeshHit hit;
+		// If the designated point is close enough to the navmesh
+		if (NavMesh.SamplePosition (position, out hit, 1.0f, NavMesh.AllAreas)) {
+			Debug.Log ("hit a point");
+			destination = hit.position;
+			agent.SetDestination (hit.position);
 		}
 	}
 }
