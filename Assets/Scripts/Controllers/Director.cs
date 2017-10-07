@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class Director : MonoBehaviour {
 	
-	private List<AgentController> selectedAgents;
+	private List<IAgent> selectedAgents;
 
 	private Collider[] movingOb = new Collider[2];
 	private bool[] chosenOb = new bool[2];
 	public int speed;
     // Use this for initialization
     void Start () {
-		selectedAgents = new List<AgentController> ();
+		selectedAgents = new List<IAgent> ();
 		//initialize movableobstacles
 		//movingOb [0] = GameObject.FindGameObjectWithTag ("movingOb1").GetComponent<Collider> (); chosenOb[0]=false;
 		//movingOb [1] = GameObject.FindGameObjectWithTag ("movingOb2").GetComponent<Collider> (); chosenOb[1] = false;
@@ -44,7 +44,8 @@ public class Director : MonoBehaviour {
 						movingOb[1].GetComponent<Rigidbody>().GetComponent<Renderer>().material.color = Color.red;
 					}
 				}
-				AgentController agent = selectedObject.GetComponent<AgentController> ();
+
+				IAgent agent = (IAgent) selectedObject.GetComponent(typeof(IAgent));
 				if (agent != null) {
 					if(selectedAgents.Contains(agent)) {
 						// remove it from the list, change color back to white
@@ -70,7 +71,7 @@ public class Director : MonoBehaviour {
 			bool didHit = Physics.Raycast(toMouse, out rhInfo);
 			if (didHit) {
 				// we hit an object. check if we can navigate to it
-				foreach (AgentController a in selectedAgents) {
+				foreach (IAgent a in selectedAgents) {
 					a.MoveTo (rhInfo.point);
 				}
 			}

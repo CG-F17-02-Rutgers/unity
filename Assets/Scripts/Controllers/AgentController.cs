@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class AgentController : MonoBehaviour {
+public class AgentController : MonoBehaviour, IAgent {
 	NavMeshAgent agent;
 	//RaycastHit des;
 	public Vector3 destination;
