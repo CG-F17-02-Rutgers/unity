@@ -71,7 +71,7 @@ public class Director : MonoBehaviour {
 			if (didHit) {
 				// we hit an object. check if we can navigate to it
 				foreach (AgentController a in selectedAgents) {
-					a.Move (rhInfo.point);
+					a.MoveTo (rhInfo.point);
 				}
 			}
         }

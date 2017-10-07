@@ -12,8 +12,8 @@ public class NazgulController : MonoBehaviour {
 	void Start () {
 		agents = GameObject.FindGameObjectsWithTag ("Agent");
 		nazgulAgent = GetComponent<NavMeshAgent> ();
-		nazgulAgent.radius = detectionDistance;
-		nazgulAgent.avoidancePriority = 10;
+		//nazgulAgent.radius = detectionDistance;
+		//nazgulAgent.avoidancePriority = 10;
 	}
 
 	void OnDrawGizmosSelected () {
@@ -27,11 +27,7 @@ public class NazgulController : MonoBehaviour {
 		// If the other agents are sufficiently close to this one
 		foreach (GameObject o in agents) {
 			if ((o.transform.position - transform.position).sqrMagnitude < (detectionDistance * detectionDistance)) {
-				// the agent is in detection distance
-				// Raycast to see if visible (if nazgul can see agent, agent can see nazgul)
-				RaycastHit hit;
-				Ray sightRay = new Ray (transform.position, o.transform.position - transform.position);
-
+				o.GetComponent<NavMeshAgent>().Move((o.transform.position - transform.position).normalized);
 			}
 		}
 	}

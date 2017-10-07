@@ -34,7 +34,7 @@ public class AgentController : MonoBehaviour {
 		Gizmos.DrawWireSphere (destination, 0.25f);
 	}
 
-	public void Move(Vector3 position){
+	public void MoveTo(Vector3 position){
 		NavMeshHit hit;
 		// If the designated point is close enough to the navmesh
 		if (NavMesh.SamplePosition (position, out hit, .1f, NavMesh.AllAreas)) {
